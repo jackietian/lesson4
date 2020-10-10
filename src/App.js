@@ -1,24 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Button, { ButtonV2 } from './components/Button';
+import Status from './components/Status'
+import Weather from './components/Weather';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {/* conditional rendering */}
+      <Status isOnline={false}/>
+
+      {/* <Button buttonType="primary" label="button" />
+      <Button buttonType="primary" label={<h1>button2</h1>} /> */}
+      
+      {/* props.children */}
+      {/* <ButtonV2 buttonType="primary">
+        <h1>Hello</h1>
+      </ButtonV2> */}
+      
+      {/* ajax */}
+      <Weather />
     </div>
   );
 }
