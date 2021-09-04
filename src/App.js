@@ -8,16 +8,16 @@ function App() {
   return (
     <div className="App">
       {/* conditional rendering */}
-      <Status isOnline={false}/>
+      {/* <Status isOnline={true}/> */}
 
-      <Button buttonType="primary" label="button1" />
-      <Button buttonType="primary" label={<h1>button2</h1>} />
+      {/* <Button color={'red'} buttonType="primary" label="button1" />
+      <Button color={'green'} buttonType="primary" label={<h1>button2</h1>} /> */}
       
       {/* props.children */}
-      <ButtonV2 buttonType="primary">
+      {/* <ButtonV2 buttonType="primary">
         <h1>Hello</h1>
         <h1>Hello</h1>
-      </ButtonV2>
+      </ButtonV2> */}
       
       {/* ajax */}
       <Weather />

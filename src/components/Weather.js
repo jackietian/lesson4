@@ -36,14 +36,11 @@
 
 // export default Weather;
 
-
-
 // weather component
 // sydney and sunrise time
 
 // import Axios from 'axios'
 // import React from 'react'
-
 
 // class Weather extends React.Component {
 //   constructor() {
@@ -84,64 +81,74 @@
 
 // export default Weather
 
+// class Weather extends React.Component {
+//   constructor() {
+//     super()
+//     this.state = {
+//       sunrise: ''
+//     }
+//   }
 
+//   async componentDidMount() {
+//     // API call
+//     try {
+//       const res = await Axios.get(api)
+//       const { data: { city: { sunrise } } } = res
+//       this.setState({
+//         sunrise: sunrise
+//       })
+//     } catch (error) {
+//       console.log(error)
+//     }
+//   }
 
+//   render() {
+//     return <h1>weather sunrise: {this.state.sunrise}</h1>
+//   }
+// }
 
+// export default Weather
 
+import React, { useEffect, useState } from "react";
+import Axios from "axios";
 
-import React from 'react'
-import Axios from 'axios'
-
-const API_key = 'c8e76c9b4fa36112b0d8aff693cee1fc';
-const city = 'Sydney';
+const API_key = "c8e76c9b4fa36112b0d8aff693cee1fc";
+const city = "Sydney";
 const api = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${API_key}`;
 
-class Weather extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      sunrise: ''
-    }
-  }
+const Weather = () => {
+  const [weatherData, setWeatherData] = useState([]);
 
-  async componentDidMount() {
-    // API call
-    try {
-      const res = await Axios.get(api)
-      const { data: { city: { sunrise } } } = res
-      this.setState({
-        sunrise: sunrise
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await Axios.get(api);
+      const formatedWeatherData = formatWeatherData(data);
+      setWeatherData(formatedWeatherData);
+    };
 
-  render() {
-    return <h1>weather sunrise: {this.state.sunrise}</h1>
-  }
-}
+    fetchData();
+  }, []);
 
-export default Weather
+  const formatWeatherData = (apiResponse) => {
+    return apiResponse.list.map((item) => {
+      const time = item.dt;
+      const weather = item.weather[0].description;
+      return {
+        time: new Date(time).toLocaleTimeString(),
+        weather,
+      };
+    });
+  };
 
+  return (
+    <ul>
+      {weatherData.map((item, index) => (
+        <li key={index}>
+          {item.time}: {item.weather}
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default Weather;

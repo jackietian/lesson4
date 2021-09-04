@@ -9,8 +9,6 @@
 
 // export default Button
 
-
-
 // import React from 'react'
 // import './Button.css'
 
@@ -29,64 +27,17 @@
 
 // export default Button
 
+import React from "react";
+import "./Button.css";
 
+const Button = (props) => (
+  <button style={{color: props.color}} className={props.buttonType}>{props.label}</button>
+);
 
+const ButtonV2 = (props) => (
+  <button className={`btn btn-${props.buttonType}`}>{props.children}</button>
+);
 
+export default Button;
 
-import React from 'react'
-import './Button.css'
-
-const Button = (props) => <button className={props.buttonType}>{props.label}</button>
-
-const ButtonV2 = (props) => <button className={`btn btn-${props.buttonType}`}>
-    {props.children}
-</button>
-
-export default Button
-
-export {
-    ButtonV2
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export { ButtonV2 };

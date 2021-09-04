@@ -91,10 +91,20 @@ const Status = (props) => {
 
   const { isOnline } = props
 
+  // if / swtich
+  switch(isOnline) {
+    case true:
+      return <Online />
+    case false:
+      return <Offline />
+    default:
+      return <h1>...loading....</h1>
+  }
+
   // option1
   // if(isOnline) {
   //   return <Online />
-  // } 
+  // }
 
   // return <Offline />
 
@@ -102,9 +112,11 @@ const Status = (props) => {
   // return isOnline ? <Online /> : <Offline />
 
   // option 3
+  console.log(isOnline)
   return <>
-    {isOnline && <Online />}
-    {!isOnline && <Offline />}
+    {isOnline === true && <Online />}
+    {isOnline === false && <Offline />}
+    {isOnline === undefined && <h1>loading...</h1>}
   </>
 }
 
