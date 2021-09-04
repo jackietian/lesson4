@@ -120,6 +120,12 @@ const Weather = () => {
   const [weatherData, setWeatherData] = useState([]);
 
   useEffect(() => {
+    /**
+     * an effect hook should return nothing or a clean up function
+     * but async function returns a promise
+     * That's why using async directly in the useEffect function isn't allowed. 
+     * Let's implement a workaround for it, by using the async function inside the effect.
+     */
     const fetchData = async () => {
       const { data } = await Axios.get(api);
       const formatedWeatherData = formatWeatherData(data);
